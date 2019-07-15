@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LastStop1 {
@@ -13,7 +10,7 @@ public class LastStop1 {
 
         String input = scanner.nextLine();
 
-        while (!input.equalsIgnoreCase("end")) {
+        while (!input.equals("END")) {
             String[] commands = input.split(" ");
             String type = commands[0];
 
@@ -30,7 +27,7 @@ public class LastStop1 {
                 case "Hide":
                     String cNumber = commands[1];
                     if (numbers.contains(commands[1])) {
-                        numbers.removeAll(Collections.singleton(cNumber));
+                        numbers.remove(cNumber);
                     }
                     break;
                 case "Switch":
@@ -41,25 +38,22 @@ public class LastStop1 {
                             numbers.set(i, secNumber);
                         } else if (numbers.get(i).equals(secNumber)) {
                             numbers.set(i, Number);
-                        } else {
-                            continue;
                         }
                     }
                     break;
                 case "Insert":
-                    if (Integer.parseInt(commands[1]) > -1 && Integer.parseInt(commands[1]) < numbers.size() ) {
-                        numbers.add(Integer.parseInt(commands[1]) + 1,commands[2]);
+                    if (Integer.parseInt(commands[1]) > -1 && Integer.parseInt(commands[1]) < numbers.size()) {
+                        numbers.add(Integer.parseInt(commands[1]) + 1, commands[2]);
                     }
                     break;
                 case "Reverse":
                     Collections.reverse(numbers);
                     break;
+                default:
+                    break;
             }
             input = scanner.nextLine();
         }
-        for (String number : numbers) {
-            System.out.print(number + " ");
-        }
+        System.out.println(String.join(" ",numbers));
     }
-
 }
